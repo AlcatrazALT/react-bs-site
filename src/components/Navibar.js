@@ -1,5 +1,5 @@
-import React from 'react'
-import { Navbar, Nav, Button, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Navbar, Nav, Button, Container, Modal, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -15,6 +15,16 @@ const Styles = styled.div`
 `
 
 export default function Navibar() {
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => {
+    setShow(false)
+  }
+
+  const handleOpen = () => {
+    setShow(true)
+  }
+
   return (
     <>
       <Styles>
@@ -35,15 +45,41 @@ export default function Navibar() {
                 </Nav.Link>
               </Nav>
               <Nav>
-                <Button variant="primary" className="mr-2">
+                <Button variant="primary" className="mr-2" onClick={handleOpen}>
                   Log in
                 </Button>
-                <Button variant="primary">Log out</Button>
+                <Button variant="primary" onClick={handleOpen}>
+                  Log out
+                </Button>
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </Styles>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Log In</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else
+              </Form.Text>
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Enter password" />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Remember Me?" />
+              <Form.Control type="password" placeholder="Enter password" />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }
