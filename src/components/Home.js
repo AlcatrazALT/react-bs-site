@@ -48,6 +48,17 @@ export const Home = () => {
         </Row>
       </Container>
       <Jumbotron />
+      <Container style={{ marginBottom: '30px' }}>
+        <Row>
+          <Col md={7}>
+            <img src={lake} height={350} alt="lake" />
+          </Col>
+          <Col md={5}>
+            <h2>Blog</h2>
+            <p>{Lorem}</p>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }
